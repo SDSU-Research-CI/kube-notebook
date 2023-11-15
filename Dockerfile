@@ -30,5 +30,5 @@ RUN apt-get -y update \
 USER $NB_USER
 
 # Install Jupyter Desktop
-RUN /opt/conda/bin/conda install -y -c manics websockify
+RUN conda install -y -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy
