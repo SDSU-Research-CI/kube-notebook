@@ -27,8 +27,8 @@ RUN apt-get -y update \
     && bash /root/setup/install-rclone.sh \
     && rm -rf /root/setup
 
-USER jovyan
-
+USER $NB_USER
+RUN echo whoami
 # Install Jupyter Desktop
-RUN conda install -y -c manics websockify
+RUN /opt/conda/bin/conda install -y -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy
