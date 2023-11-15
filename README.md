@@ -10,3 +10,4 @@ A container image for a Jupyter Notebook with kubectl installed for interacting 
 - zip
 - curl
 - wget
+- Jupyter Desktop
