@@ -27,7 +27,7 @@ RUN apt-get -y update \
     && bash /root/setup/install-rclone.sh \
     && rm -rf /root/setup
 
-USER $NB_USER
+USER jovyan
 
 # Install Jupyter Desktop
 RUN conda install -y -c manics websockify
