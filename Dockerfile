@@ -4,14 +4,14 @@ FROM ${BASE_IMAGE}
 
 # Switch to root for linux updates and installs
 USER root
-
-COPY setup/ /root/setup
+WORKDIR /root
 
 # Install rclone and kubectl
-RUN install -o root -g root -m 0755 /root/setup/kubectl /usr/local/bin/kubectl \
- && chmod +x /root/setup/install-rclone.sh \
- && bash /root/setup/install-rclone.sh \
- && rm -rf /root/setup
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"\
+ && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+ && curl -O https://rclone.org/install.sh \
+ && bash /root/install.sh \
+ && rm -f /root/install.sh
 
 # Install Jupyter Desktop Dependencies, zip and vim
 RUN apt-get -y update \
