@@ -11,7 +11,8 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
  && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
  && curl -O https://rclone.org/install.sh \
  && bash /root/install.sh \
- && rm -f /root/install.sh
+ && rm -f /root/install.sh \
+ && curl -fsSL https://code-server.dev/install.sh | sh
 
 # Install Jupyter Desktop Dependencies, zip and vim
 RUN apt-get -y update \
@@ -44,4 +45,4 @@ WORKDIR /home/${NB_USER}
 
 # Install Jupyter Desktop
 RUN /opt/conda/bin/conda install -y -q -c manics websockify
-RUN pip install jupyter-remote-desktop-proxy
+RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
