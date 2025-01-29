@@ -14,7 +14,7 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
  && rm -f /root/install.sh \
  && curl -fsSL https://code-server.dev/install.sh | sh
 
-# Install Jupyter Desktop Dependencies, zip and vim
+# Install Jupyter Desktop dependencies, zip and vim, Globus dependencies
 RUN apt-get -y update \
  && apt-get -y install \
     dbus-x11 \
@@ -26,6 +26,10 @@ RUN apt-get -y update \
     xubuntu-icon-theme \
     tigervnc-standalone-server \
     tigervnc-xorg-extension \
+    zip \
+    vim \
+    tk \
+    tcllib \
  && apt clean \
  && rm -rf /var/lib/apt/lists/* \
  && fix-permissions "${CONDA_DIR}" \
@@ -39,6 +43,11 @@ RUN curl -O "https://dl.google.com/linux/direct/google-chrome-stable_current_amd
  && apt-get install -y -f \
  && rm /opt/google-chrome-stable_current_amd64.deb
 
+# Install GlobusConnectPersonal
+RUN wget https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz \
+ && tar xzf globusconnectpersonal-latest.tgz \
+ && rm globusconnectpersonal-latest.tgz
+
 # Switch back to notebook user
 USER $NB_USER
 WORKDIR /home/${NB_USER}
@@ -46,3 +55,5 @@ WORKDIR /home/${NB_USER}
 # Install Jupyter Desktop
 RUN /opt/conda/bin/conda install -y -q -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
+
+ENV PATH=/opt/globusconnectpersonal-3.2.6:$PATH
