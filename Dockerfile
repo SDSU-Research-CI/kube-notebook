@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/jupyter/minimal-notebook:latest
+ARG BASE_IMAGE=quay.io/jupyter/minimal-notebook:2025-06-30
 
 FROM ${BASE_IMAGE}
 
