@@ -9,4 +9,4 @@ A container image for a Jupyter Notebook with kubectl installed for interacting 
 - Globus Connect Personal
 - NB Conda Kernels
 
-This image is based on the [Jupyter Stack Minimal](https://github.com/jupyter/docker-stacks/tree/main/images/minimal-notebook) container image.
+This image is based on the [Jupyter Docker Stacks minimal-notebook](https://github.com/jupyter/docker-stacks/tree/main/images/minimal-notebook) image from Quay.io (`quay.io/jupyter/minimal-notebook`).
