@@ -57,4 +57,4 @@ RUN /opt/conda/bin/conda install -y -q -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
 RUN pip install nbgitpuller
 
-ENV PATH=/opt/globusconnectpersonal-3.2.6:$PATH
+ENV PATH=/opt/globusconnectpersonal-3.2.7:$PATH
