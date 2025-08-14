@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/jupyter/minimal-notebook:2025-06-30
+ARG BASE_IMAGE=quay.io/jupyter/minimal-notebook:2025-07-07
 
 FROM ${BASE_IMAGE}
 
@@ -55,5 +55,6 @@ WORKDIR /home/${NB_USER}
 # Install Jupyter Desktop
 RUN /opt/conda/bin/conda install -y -q -c manics websockify
 RUN pip install jupyter-remote-desktop-proxy jupyter-codeserver-proxy
+RUN pip install nbgitpuller
 
 ENV PATH=/opt/globusconnectpersonal-3.2.6:$PATH
